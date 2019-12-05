@@ -1,5 +1,7 @@
 Assumptions
-	Invalid input return 0? throw exception?
+	Invalid game (line) return 0? throw exception?
+	Invalid pin counts for a given frame:
+		i.e. 38 or 83 this usually occurs when pins are not placed properly for second ball of the frame.
 	bonus throw for frame 10 based on bowling rule as following
 		X on frame 10 get 2 throw, first starts with 10 pins and second starts with the remaining pins from first throw (10 pins if first throw knock down all pints)
 		/ on frame 10 get 1 throw that starts with 10 pins
@@ -14,25 +16,24 @@ Test cases
 	1.2 includes less than 10 frames
 		X|X|X|X|X|X|X|X|X||XX
 	
-	1.3 includes invalid character in a given frame (valid characters are [0-9], -, /, X, -)
-		X|X|X|X|X|C|X|X|X|X||XX
+	1.3 includes invalid info for a given frame
+		1.3.1 more than 2 inputs for a given frame
+		1.3.2 X and / occurs in the same frame
+		1.3.3 - occurs after X or / for a given frame (- can occurs after X in the bonus frame)
+		1.3.4 / occurs as first input for a given frame
+		1.3.5 / occurs twice in a given frame
+		1.3.6 X occurs as first input for a given frame and follow by a digit
+		1.3.7 X occurs twice in a given frame 
+		1.3.8 2 digits of a given frame adds up more than 10 (can NOT knock down more than 10 pins per frame)
+		1.3.9 includes invalid character in a given frame (valid characters are [0-9], -, /, X, -)
+				X|X|X|X|X|C|X|X|X|X||XX
 	
-	1.4 includes invalid info for a given frame
-		1.4.1 more than 2 inputs for a given frame
-		1.4.2 X and / occurs in the same frame
-		1.4.3 - occurs after X or / for a given frame (- can occurs after X in the bonus frame)
-		1.4.4 / occurs as first input for a given frame
-		1.4.5 / occurs twice in a given frame
-		1.4.6 X occurs as first input for a given frame and follow by a digit
-		1.4.7 X occurs twice in a given frame 
-		1.4.8 2 digits of a given frame adds up more than 10 (can NOT knock down more than 10 pins per frame)
-	
-	1.5 includes invalid info for bonus balls
-		1.5.1 / as first bonus balls
-		1.5.2 bonus balls when frame 10 is NOT / or X
-		1.5.3 more than two bonus balls when frame 10 is X
-		1.5.4 more than one bonus balls when frame 10 is / and first bonus ball is NOT X
-		1.5.5 sum of bonus balls greater than 10 with first bonus ball is NOT X (i.e. ||88)
+	1.4 includes invalid info for bonus balls
+		1.4.1 / as first bonus balls
+		1.4.2 bonus balls when frame 10 is NOT / or X
+		1.4.3 more than two bonus balls when frame 10 is X
+		1.4.4 more than one bonus balls when frame 10 is /
+		1.4.5 sum of bonus balls greater than 10 when first bonus ball is NOT X (i.e. ||88)
 		
 		
 		

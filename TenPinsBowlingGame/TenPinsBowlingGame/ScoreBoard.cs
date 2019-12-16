@@ -6,9 +6,10 @@ namespace TenPinsBowlingGame
     {
         public Frame[] Frames;
 
-        public ScoreBoard(Frame[] newScoreboard)
+        public ScoreBoard(string gameInfo)
         {
-            Frames = newScoreboard;
+            var gameParser = new GameParser();
+            Frames = gameParser.GenerateScoreBoard(gameInfo);
         }
 
         public ScoreResult GetCurrentScores()

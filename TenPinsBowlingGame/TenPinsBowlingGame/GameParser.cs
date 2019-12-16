@@ -6,23 +6,18 @@ namespace TenPinsBowlingGame
 {
     public class GameParser : ScoreBoardValidator
     {
-        private string[] gameInfoArray;
-
-        public GameParser(string gameInfo)
+        public Frame[] GenerateScoreBoard(string gameInfo)
         {
-            gameInfoArray = gameInfo.Split(ValidInput.FrameSeparator);
+            var gameInfoArray = gameInfo.Split(ValidInput.FrameSeparator);
 
             if (!IsValidGame(gameInfoArray))
             {
                 throw new InvalidGameInputException($"Invalid game input {gameInfo}");
             }
-        }
 
-        public ScoreBoard GenerateScoreBoard()
-        {
             var frames = new Frame[InputIndex.NumberOfFramesInBowlingGame];
             var bonusTracker = new BonusHandler();
-            ScoreBoard scoreBoard;
+            
 
             for (var frameIndex = 0; frameIndex < InputIndex.NumberOfFramesInBowlingGame; frameIndex++)
             {
@@ -43,10 +38,8 @@ namespace TenPinsBowlingGame
                 var bonusFrame = StringToFrame(gameInfoArray[InputIndex.BonusFrame]);
                 bonusTracker.ApplyBonuses(bonusFrame.PinsDroppedOfAThrow);
             }
-
-            scoreBoard = new ScoreBoard(frames);
-
-            return scoreBoard;
+            
+            return frames;
         }
 
         private static Frame StringToFrame(string frameString)

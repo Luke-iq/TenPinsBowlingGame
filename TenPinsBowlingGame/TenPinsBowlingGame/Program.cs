@@ -7,7 +7,6 @@ namespace TenPinsBowlingGame
     {
         public static void Main(string[] args)
         {
-            GameParser gameParser;
             ScoreBoard bowlingGameScoreBoard;
 
             var bowlingGameStats = new []
@@ -27,8 +26,7 @@ namespace TenPinsBowlingGame
 
             foreach (var gameInput in bowlingGameStats)
             {
-                gameParser = new GameParser(gameInput);
-                bowlingGameScoreBoard = gameParser.GenerateScoreBoard();
+                bowlingGameScoreBoard = new ScoreBoard(gameInput);
                 
                 var currentResult = bowlingGameScoreBoard.GetCurrentScores();
 
@@ -41,8 +39,7 @@ namespace TenPinsBowlingGame
             {
                 try
                 {
-                    gameParser = new GameParser(input);
-                    bowlingGameScoreBoard = gameParser.GenerateScoreBoard();
+                    bowlingGameScoreBoard = new ScoreBoard(input);
                     var currentResult = bowlingGameScoreBoard.GetCurrentScores();
 
                     Console.WriteLine($"\t\t\t\t\t{currentResult.Score} {currentResult.ScoreType}\n");

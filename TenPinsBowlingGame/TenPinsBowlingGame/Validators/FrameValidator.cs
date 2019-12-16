@@ -53,8 +53,8 @@ namespace TenPinsBowlingGame.Validators
             {
                 return false;
             }
-            char firstThrow = char.ToLower(frame[InputIndex.FirstInput]);
-            char secondThrow = char.ToLower(frame[InputIndex.SecondInput]);
+            var firstThrow = char.ToLower(frame[InputIndex.FirstInput]);
+            var secondThrow = char.ToLower(frame[InputIndex.SecondInput]);
 
             return ValidInput.ValidFirstOfTwoThrows.Contains(firstThrow) && secondThrow == ValidInput.Spare;
         }
@@ -75,11 +75,9 @@ namespace TenPinsBowlingGame.Validators
 
         private static bool IsSumLessOrEqualToTen(string frame)
         {
-            const int maximumTotalForTwoThrows = 10;
-
             var sum = frame.Where(char.IsDigit).Sum(input => (int) char.GetNumericValue(input));
 
-            return sum <= maximumTotalForTwoThrows;
+            return sum <= InputIndex.TotalNumberOfPins;
         }
     }
 }

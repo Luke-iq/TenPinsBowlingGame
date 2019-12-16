@@ -9,7 +9,7 @@ namespace TenPinsBowlingGame.Validators
             return HasCorrectNumberOfFrames(gameScoreBoard) && HasBonusIndicator(gameScoreBoard) && (HasCorrectFrames(gameScoreBoard) && HasCorrectFrameTenBonus(gameScoreBoard));
         }
 
-        private bool HasCorrectNumberOfFrames(string[] gameScoreBoard)
+        private static bool HasCorrectNumberOfFrames(string[] gameScoreBoard)
         {
             return gameScoreBoard.Length == InputIndex.TotalNumberOfFramesFromStringInput;
         }
@@ -18,14 +18,14 @@ namespace TenPinsBowlingGame.Validators
         {
             var hasCorrectFrames = true;
  
-            for (int frameIndex = 0; frameIndex < InputIndex.NumberOfFramesInBowlingGame; frameIndex++)
+            for (var frameIndex = 0; frameIndex < InputIndex.NumberOfFramesInBowlingGame; frameIndex++)
             {
                 hasCorrectFrames = hasCorrectFrames && IsValidFrame(gameScoreBoard[frameIndex]);
             }
 
             return hasCorrectFrames;
         }
-        private bool HasBonusIndicator(string[] gameScoreBoard)
+        private static bool HasBonusIndicator(string[] gameScoreBoard)
         {
             return gameScoreBoard[InputIndex.BonusIndicatorIndex] == ValidInput.EmptyFrame;
         }

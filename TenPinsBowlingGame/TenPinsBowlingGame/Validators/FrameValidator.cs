@@ -7,12 +7,36 @@ namespace TenPinsBowlingGame.Validators
     {
         public bool IsValidFrame(string frame)
         {
-            switch (frame.Length)
+            return IsStrikeFrame(frame) || IsSpareFrame(frame) || IsValidNoneSpareFrameWIthTwoThrows(frame);
+        }
+
+        public bool IsValidFrameTenBonus(string frameTen, string bonus)
+        {
+            char firstBonus;
+
+            switch (bonus.Length)
             {
-                case 1:
-                    return IsStrikeFrame(frame);
-                case 2:
-                    return IsSpareFrame(frame) || IsValidFrameWIthTwoThrows(frame);
+                case (int)FrameBonus.NoBonus:
+                    return !IsSpareFrame(frameTen) && !IsStrikeFrame(frameTen);
+
+                case (int)FrameBonus.Spare:
+                    if (IsSpareFrame(frameTen))
+                    {
+
+                        firstBonus = char.ToLower(bonus[InputIndex.FirstInput]);
+                        return ValidInput.ValidFirstBonus.Contains(firstBonus);
+                    }
+                    return false;
+
+                case (int)FrameBonus.Strike:
+                    if (IsStrikeFrame(frameTen))
+                    {
+                        firstBonus = char.ToLower(bonus[InputIndex.FirstInput]);
+                        var secondBonus = char.ToLower(bonus[InputIndex.SecondInput]);
+                        return ValidInput.ValidFirstBonus.Contains(firstBonus) && ValidInput.ValidSecondBonus.Contains(secondBonus);
+                    }
+                    return false;
+
                 default:
                     return false;
             }
@@ -20,20 +44,27 @@ namespace TenPinsBowlingGame.Validators
 
         public static bool IsStrikeFrame(string frame)
         {
-            return ((frame.Length == 1) && (frame.ToLower() == ValidInput.StrikeFrame));
+            return ((frame.Length == ValidInput.StrikeFrameLength) && (frame.ToLower() == ValidInput.StrikeFrame));
         }
 
         public static bool IsSpareFrame(string frame)
         {
-            var firstThrow = char.ToLower(frame[InputIndex.FirstInput]);
-            var secondThrow = char.ToLower(frame[InputIndex.SecondInput]);
+            if (frame.Length != ValidInput.NoneStrikeFrameLength)
+            {
+                return false;
+            }
+            char firstThrow = char.ToLower(frame[InputIndex.FirstInput]);
+            char secondThrow = char.ToLower(frame[InputIndex.SecondInput]);
 
             return ValidInput.ValidFirstOfTwoThrows.Contains(firstThrow) && secondThrow == ValidInput.Spare;
         }
 
-        private static bool IsValidFrameWIthTwoThrows(string frame)
+        private static bool IsValidNoneSpareFrameWIthTwoThrows(string frame)
         {
-
+            if (frame.Length != ValidInput.NoneStrikeFrameLength)
+            {
+                return false;
+            }
             var firstThrow = char.ToLower(frame[InputIndex.FirstInput]);
             var secondThrow = char.ToLower(frame[InputIndex.SecondInput]);
 

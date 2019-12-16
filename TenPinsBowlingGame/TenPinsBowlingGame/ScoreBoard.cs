@@ -2,13 +2,18 @@
 
 namespace TenPinsBowlingGame
 {
-    public class ScoreBoard : GameParser
+    public class ScoreBoard// : GameParser
     {
         public Frame[] Frames;
 
-        public ScoreBoard(string gameInfo)
+        //public ScoreBoard(string gameInfo)
+        //{
+        //    Frames = ParseGameInfo(gameInfo);
+        //}
+
+        public ScoreBoard(Frame[] newScoreboard)
         {
-            Frames = ParseGameInfo(gameInfo);
+            Frames = newScoreboard;
         }
 
         public ScoreResult GetCurrentScores()

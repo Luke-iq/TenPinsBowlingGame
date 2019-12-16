@@ -13,7 +13,6 @@ namespace TenPinsBowlingGame.Tests
             var gameParser = new GameParser(bowlingGameStats);
 
             var sut = gameParser.GenerateScoreBoard();
-            //var sut = new ScoreBoard(bowlingGameStats);
 
             sut.GetCurrentScores().Score.Should().Be(46);
         }
@@ -26,7 +25,6 @@ namespace TenPinsBowlingGame.Tests
             var gameParser = new GameParser(bowlingGameStats);
 
             var sut = gameParser.GenerateScoreBoard();
-            //var sut = new ScoreBoard(bowlingGameStats);
 
             sut.GetCurrentScores().Score.Should().Be(19);
         }
@@ -39,7 +37,6 @@ namespace TenPinsBowlingGame.Tests
             var gameParser = new GameParser(bowlingGameStats);
 
             var sut = gameParser.GenerateScoreBoard();
-            //var sut = new ScoreBoard(bowlingGameStats);
 
             sut.GetCurrentScores().Score.Should().Be(38);
         }
@@ -52,7 +49,6 @@ namespace TenPinsBowlingGame.Tests
             var gameParser = new GameParser(bowlingGameStats);
 
             var sut = gameParser.GenerateScoreBoard();
-            //var sut = new ScoreBoard(bowlingGameStats);
 
             sut.GetCurrentScores().Score.Should().Be(15);
         }
@@ -65,7 +61,6 @@ namespace TenPinsBowlingGame.Tests
             var gameParser = new GameParser(bowlingGameStats);
 
             var sut = gameParser.GenerateScoreBoard();
-            //var sut = new ScoreBoard(bowlingGameStats);
 
             sut.GetCurrentScores().Score.Should().Be(14);
         }
@@ -78,7 +73,6 @@ namespace TenPinsBowlingGame.Tests
             var gameParser = new GameParser(bowlingGameStats);
 
             var sut = gameParser.GenerateScoreBoard();
-            //var sut = new ScoreBoard(bowlingGameStats);
 
             sut.GetCurrentScores().Score.Should().Be(12);
         }
@@ -91,7 +85,6 @@ namespace TenPinsBowlingGame.Tests
             var gameParser = new GameParser(bowlingGameStats);
 
             var sut = gameParser.GenerateScoreBoard();
-            //var sut = new ScoreBoard(bowlingGameStats);
 
             sut.GetCurrentScores().Score.Should().Be(300);
         }
@@ -104,7 +97,6 @@ namespace TenPinsBowlingGame.Tests
             var gameParser = new GameParser(bowlingGameStats);
 
             var sut = gameParser.GenerateScoreBoard();
-            //var sut = new ScoreBoard(bowlingGameStats);
 
             sut.GetCurrentScores().Score.Should().Be(150);
         }
@@ -117,8 +109,7 @@ namespace TenPinsBowlingGame.Tests
             var gameParser = new GameParser(bowlingGameStats);
 
             var sut = gameParser.GenerateScoreBoard();
-            //var sut = new ScoreBoard(bowlingGameStats);
-
+            
             sut.GetCurrentScores().Score.Should().Be(90);
         }
 
@@ -130,8 +121,7 @@ namespace TenPinsBowlingGame.Tests
             var gameParser = new GameParser(bowlingGameStats);
 
             var sut = gameParser.GenerateScoreBoard();
-            //var sut = new ScoreBoard(bowlingGameStats);
-
+            
             sut.GetCurrentScores().Score.Should().Be(167);
         }
     }

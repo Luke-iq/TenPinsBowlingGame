@@ -22,6 +22,7 @@ namespace TenPinsBowlingGame
         {
             var frames = new Frame[InputIndex.NumberOfFramesInBowlingGame];
             var bonusTracker = new BonusHandler();
+            ScoreBoard scoreBoard;
 
             for (var frameIndex = 0; frameIndex < InputIndex.NumberOfFramesInBowlingGame; frameIndex++)
             {
@@ -43,51 +44,10 @@ namespace TenPinsBowlingGame
                 bonusTracker.ApplyBonuses(bonusFrame.PinsDroppedOfAThrow);
             }
 
-            var scoreBoard = new ScoreBoard(frames);
+            scoreBoard = new ScoreBoard(frames);
 
             return scoreBoard;
         }
-
-        //public Frame[] ParseGameInfo()
-        //{
-            //var gameInfoSplit = _gameInfo.Split(ValidInput.FrameSeparator);
-
-            //if (!IsValidGame(gameInfoSplit))
-            //{
-            //    throw new InvalidGameInputException($"Invalid game input {_gameInfo}");
-            //}
-
-        //    var scoreBoard = new Frame[InputIndex.NumberOfFramesInBowlingGame];
-
-        //    PopulateFrames(gameInfoSplit, scoreBoard);
-            
-        //    return scoreBoard;
-        //}
-
-        //private static void PopulateFrames(string[] gameInfo, Frame[] scoreBoard)
-        //{
-        //    var bonusTracker = new BonusHandler();
-            
-        //    for (var frameIndex = 0; frameIndex < InputIndex.NumberOfFramesInBowlingGame; frameIndex++)
-        //    {
-        //        var newFrame = StringToFrame(gameInfo[frameIndex]);
-
-        //        bonusTracker.ApplyBonuses(newFrame.PinsDroppedOfAThrow);
-                
-        //        if (newFrame.NumberOfBonusAcquired != FrameBonus.NoBonus)
-        //        {
-        //            bonusTracker.AddFrame(newFrame);
-        //        }
-
-        //        scoreBoard[frameIndex] = newFrame;
-        //    }
-
-        //    if (gameInfo[InputIndex.BonusFrame].Length != ValidInput.EmptyFrameLength)
-        //    {
-        //        var bonusFrame = StringToFrame(gameInfo[InputIndex.BonusFrame]);
-        //        bonusTracker.ApplyBonuses(bonusFrame.PinsDroppedOfAThrow);
-        //    }
-        //}
 
         private static Frame StringToFrame(string frameString)
         {

@@ -35,7 +35,6 @@ namespace TenPinsBowlingGame
                 Console.WriteLine($"{gameInput}\n\t\t\t\t\t{currentResult.Score}\n");
             }
 
-
             Console.WriteLine("Please Enter a string for bowling game or `q` to end program:");
             var input = Console.ReadLine();
             while (input != "q")
@@ -44,7 +43,6 @@ namespace TenPinsBowlingGame
                 {
                     gameParser = new GameParser(input);
                     bowlingGameScoreBoard = gameParser.GenerateScoreBoard();
-                    //bowlingGameScoreBoard = new ScoreBoard(input);
                     var currentResult = bowlingGameScoreBoard.GetCurrentScores();
 
                     Console.WriteLine($"\t\t\t\t\t{currentResult.Score} {currentResult.ScoreType}\n");

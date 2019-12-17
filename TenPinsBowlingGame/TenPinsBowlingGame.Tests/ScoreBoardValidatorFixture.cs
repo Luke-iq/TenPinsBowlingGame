@@ -12,9 +12,9 @@ namespace TenPinsBowlingGame.Tests
         public void Should_Return_False_When_Less_Than_Ten_Frame()
         {
             var gameDetail = new string[] {"X","X","X","X","X","X","X","X","X","XX"};
-            var sut = new ScoreBoardValidator();
+            var sut = new ScoreBoardValidator(gameDetail);
 
-            var result = sut.IsValidGame(gameDetail);
+            var result = sut.IsValidGame();
 
             result.Should().BeFalse();
         }
@@ -24,9 +24,9 @@ namespace TenPinsBowlingGame.Tests
         public void Should_Return_False_When_More_Than_Ten_Frame()
         {
             var gameDetail = new string[] { "X", "X", "X", "X", "X", "X", "X", "X", "X", "x", "x", "", "XX" };
-            var sut = new ScoreBoardValidator();
+            var sut = new ScoreBoardValidator(gameDetail);
 
-            var result = sut.IsValidGame(gameDetail);
+            var result = sut.IsValidGame();
 
             result.Should().BeFalse();
         }
@@ -36,9 +36,9 @@ namespace TenPinsBowlingGame.Tests
         public void Should_Return_False_When_Missing_Bonus_Indicator()
         {
             var gameDetail = new string[] { "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "x" };
-            var sut = new ScoreBoardValidator();
+            var sut = new ScoreBoardValidator(gameDetail);
 
-            var result = sut.IsValidGame(gameDetail);
+            var result = sut.IsValidGame();
 
             result.Should().BeFalse();
         }
@@ -48,9 +48,9 @@ namespace TenPinsBowlingGame.Tests
         public void Should_Return_True_For_Game_With_One_Bonus()
         {
             var gameDetail = new string[] { "X", "X", "X", "X", "X", "X", "X", "X", "X", "4/", "", "x" };
-            var sut = new ScoreBoardValidator();
+            var sut = new ScoreBoardValidator(gameDetail);
 
-            var result = sut.IsValidGame(gameDetail);
+            var result = sut.IsValidGame();
 
             result.Should().BeTrue();
         }
@@ -60,9 +60,9 @@ namespace TenPinsBowlingGame.Tests
         public void Should_Return_True_For_Game_With_Two_Bonus()
         {
             var gameDetail = new string[] { "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "", "33" };
-            var sut = new ScoreBoardValidator();
+            var sut = new ScoreBoardValidator(gameDetail);
 
-            var result = sut.IsValidGame(gameDetail);
+            var result = sut.IsValidGame();
 
             result.Should().BeTrue();
         }
@@ -72,9 +72,9 @@ namespace TenPinsBowlingGame.Tests
         public void Should_Return_True_For_Game_Without_Bonus()
         {
             var gameDetail = new string[] { "X", "X", "X", "X", "X", "X", "X", "X", "X", "33", "", "" };
-            var sut = new ScoreBoardValidator();
+            var sut = new ScoreBoardValidator(gameDetail);
 
-            var result = sut.IsValidGame(gameDetail);
+            var result = sut.IsValidGame();
 
             result.Should().BeTrue();
         }

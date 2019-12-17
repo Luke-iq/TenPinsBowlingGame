@@ -1,5 +1,0 @@
-DevelopHistory
-
-Day 1: 
-	Identify requirement and convert it into test items
-	

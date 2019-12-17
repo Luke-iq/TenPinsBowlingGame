@@ -2,36 +2,43 @@
 
 namespace TenPinsBowlingGame.Validators
 {
-    public class ScoreBoardValidator : FrameValidator
+    public class ScoreBoardValidator
     {
-        public bool IsValidGame(string[] gameScoreBoard)
+        public string[] ScoreBoardArray { get; }
+        public ScoreBoardValidator(string[] newScoreBoardArray)
         {
-            return HasCorrectNumberOfFrames(gameScoreBoard) && HasBonusIndicator(gameScoreBoard) && (HasCorrectFrames(gameScoreBoard) && HasCorrectFrameTenBonus(gameScoreBoard));
+            ScoreBoardArray = newScoreBoardArray;
+        }
+        public bool IsValidGame()
+        {
+            return HasCorrectNumberOfFrames() && HasBonusIndicator() && (HasCorrectFrames() && HasCorrectFrameTenBonus());
         }
 
-        private static bool HasCorrectNumberOfFrames(string[] gameScoreBoard)
+        private bool HasCorrectNumberOfFrames()
         {
-            return gameScoreBoard.Length == InputIndex.TotalNumberOfFramesFromStringInput;
+            return ScoreBoardArray.Length == InputIndex.TotalNumberOfFramesFromStringInput;
         }
 
-        private bool HasCorrectFrames(string[] gameScoreBoard)
+        private bool HasCorrectFrames()
         {
             var hasCorrectFrames = true;
  
             for (var frameIndex = 0; frameIndex < InputIndex.NumberOfFramesInBowlingGame; frameIndex++)
             {
-                hasCorrectFrames = hasCorrectFrames && IsValidFrame(gameScoreBoard[frameIndex]);
+                var frameValidator = new FrameValidator(ScoreBoardArray[frameIndex]);
+                hasCorrectFrames = hasCorrectFrames && frameValidator.IsValidFrame();
             }
 
             return hasCorrectFrames;
         }
-        private static bool HasBonusIndicator(string[] gameScoreBoard)
+        private bool HasBonusIndicator()
         {
-            return gameScoreBoard[InputIndex.BonusIndicatorIndex] == ValidInput.EmptyFrame;
+            return ScoreBoardArray[InputIndex.BonusIndicatorIndex] == ValidInput.EmptyFrame;
         }
-        private bool HasCorrectFrameTenBonus(string[] gameScoreBoard)
+        private bool HasCorrectFrameTenBonus()
         {
-            return IsValidFrameTenBonus(gameScoreBoard[InputIndex.FrameTen], gameScoreBoard[InputIndex.BonusFrame]);
+            var frameTen = new FrameValidator(ScoreBoardArray[InputIndex.FrameTen]);
+            return frameTen.IsValidFrameTenBonus(ScoreBoardArray[InputIndex.BonusFrame]);
         }
     }
 }

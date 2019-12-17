@@ -5,22 +5,29 @@ namespace TenPinsBowlingGame.Validators
 {
     public class FrameValidator
     {
-        public bool IsValidFrame(string frame)
+        public string FrameString { get; }
+
+        public FrameValidator(string newFrame)
         {
-            return IsStrikeFrame(frame) || IsSpareFrame(frame) || IsValidNoneSpareFrameWIthTwoThrows(frame);
+            FrameString = newFrame;
         }
 
-        public bool IsValidFrameTenBonus(string frameTen, string bonus)
+        public bool IsValidFrame()
+        {
+            return IsStrikeFrame() || IsSpareFrame() || IsValidNoneSpareFrameWIthTwoThrows();
+        }
+
+        public bool IsValidFrameTenBonus(string bonus)
         {
             char firstBonus;
 
             switch (bonus.Length)
             {
                 case (int)FrameBonus.NoBonus:
-                    return !IsSpareFrame(frameTen) && !IsStrikeFrame(frameTen);
+                    return !IsSpareFrame() && !IsStrikeFrame();
 
                 case (int)FrameBonus.Spare:
-                    if (IsSpareFrame(frameTen))
+                    if (IsSpareFrame())
                     {
 
                         firstBonus = char.ToLower(bonus[InputIndex.FirstInput]);
@@ -29,7 +36,7 @@ namespace TenPinsBowlingGame.Validators
                     return false;
 
                 case (int)FrameBonus.Strike:
-                    if (IsStrikeFrame(frameTen))
+                    if (IsStrikeFrame())
                     {
                         firstBonus = char.ToLower(bonus[InputIndex.FirstInput]);
                         var secondBonus = char.ToLower(bonus[InputIndex.SecondInput]);
@@ -42,40 +49,40 @@ namespace TenPinsBowlingGame.Validators
             }
         }
 
-        public static bool IsStrikeFrame(string frame)
+        public bool IsStrikeFrame()
         {
-            return ((frame.Length == ValidInput.StrikeFrameLength) && (frame.ToLower() == ValidInput.StrikeFrame));
+            return ((FrameString.Length == ValidInput.StrikeFrameLength) && (FrameString.ToLower() == ValidInput.StrikeFrame));
         }
 
-        public static bool IsSpareFrame(string frame)
+        public bool IsSpareFrame()
         {
-            if (frame.Length != ValidInput.NoneStrikeFrameLength)
+            if (FrameString.Length != ValidInput.NoneStrikeFrameLength)
             {
                 return false;
             }
-            var firstThrow = char.ToLower(frame[InputIndex.FirstInput]);
-            var secondThrow = char.ToLower(frame[InputIndex.SecondInput]);
+            var firstThrow = char.ToLower(FrameString[InputIndex.FirstInput]);
+            var secondThrow = char.ToLower(FrameString[InputIndex.SecondInput]);
 
             return ValidInput.ValidFirstOfTwoThrows.Contains(firstThrow) && secondThrow == ValidInput.Spare;
         }
 
-        private static bool IsValidNoneSpareFrameWIthTwoThrows(string frame)
+        private bool IsValidNoneSpareFrameWIthTwoThrows()
         {
-            if (frame.Length != ValidInput.NoneStrikeFrameLength)
+            if (FrameString.Length != ValidInput.NoneStrikeFrameLength)
             {
                 return false;
             }
-            var firstThrow = char.ToLower(frame[InputIndex.FirstInput]);
-            var secondThrow = char.ToLower(frame[InputIndex.SecondInput]);
+            var firstThrow = char.ToLower(FrameString[InputIndex.FirstInput]);
+            var secondThrow = char.ToLower(FrameString[InputIndex.SecondInput]);
 
-            var hasCorrectSum = IsSumLessOrEqualToTen(frame);
+            var hasCorrectSum = IsSumLessOrEqualToTen();
 
             return ValidInput.ValidFirstOfTwoThrows.Contains(firstThrow) && ValidInput.ValidSecondOfTwoThrows.Contains(secondThrow) && hasCorrectSum;
         }
 
-        private static bool IsSumLessOrEqualToTen(string frame)
+        private bool IsSumLessOrEqualToTen()
         {
-            var sum = frame.Where(char.IsDigit).Sum(input => (int) char.GetNumericValue(input));
+            var sum = FrameString.Where(char.IsDigit).Sum(input => (int) char.GetNumericValue(input));
 
             return sum <= InputIndex.TotalNumberOfPins;
         }

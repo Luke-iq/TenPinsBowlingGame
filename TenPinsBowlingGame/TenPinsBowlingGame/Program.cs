@@ -42,14 +42,14 @@ namespace TenPinsBowlingGame
                     bowlingGameScoreBoard = new ScoreBoard(input);
                     var currentResult = bowlingGameScoreBoard.GetCurrentScores();
 
-                    Console.WriteLine($"\t\t\t\t\t{currentResult.Score} {currentResult.ScoreType}\n");
+                    Console.WriteLine($"\t\t\t\t{currentResult.ScoreType} Score: {currentResult.Score}\n");
                 }
                 catch (InvalidGameInputException e)
                 {
                     Console.WriteLine(e.Message);
                 }
 
-                Console.WriteLine("Please Enter a string for bowling game or x to end program:");
+                Console.WriteLine("Please Enter a string for bowling game or 'q' to end program:");
                 input = Console.ReadLine();
             }
         }

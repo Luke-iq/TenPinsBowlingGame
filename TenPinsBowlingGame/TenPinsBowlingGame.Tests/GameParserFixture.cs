@@ -16,7 +16,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -32,7 +32,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -48,7 +48,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -64,7 +64,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -80,7 +80,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -96,7 +96,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -112,7 +112,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -128,7 +128,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -144,7 +144,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -160,7 +160,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -176,7 +176,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -192,7 +192,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -208,7 +208,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -224,7 +224,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -240,7 +240,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -256,7 +256,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -272,7 +272,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -288,7 +288,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -304,7 +304,7 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
@@ -320,13 +320,12 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
                 .WithMessage($"Invalid game input {bowlingGameStats}");
         }
-
 
         [Test]
         [Category("GameParserFixture: Negative")]
@@ -337,12 +336,11 @@ namespace TenPinsBowlingGame.Tests
 
             Action act = () =>
             {
-                sut.ParseGameInfo(bowlingGameStats);
+                sut.GenerateScoreBoard(bowlingGameStats);
             };
 
             act.Should().Throw<InvalidGameInputException>()
                 .WithMessage($"Invalid game input {bowlingGameStats}");
         }
-
     }
 }

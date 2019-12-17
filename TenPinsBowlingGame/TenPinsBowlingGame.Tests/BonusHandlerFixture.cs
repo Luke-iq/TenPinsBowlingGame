@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using FluentAssertions;
 using TenPinsBowlingGame.Definitions;
-using TenPinsBowlingGame.Validators;
 using System.Collections.Generic;
 
 namespace TenPinsBowlingGame.Tests

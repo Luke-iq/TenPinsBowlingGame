@@ -8,6 +8,7 @@ namespace TenPinsBowlingGame
         public static void Main(string[] args)
         {
             ScoreBoard bowlingGameScoreBoard;
+
             var bowlingGameStats = new []
             {
                 "11|22|33|44|11|22|33|44|11|22||",
@@ -31,7 +32,6 @@ namespace TenPinsBowlingGame
 
                 Console.WriteLine($"{gameInput}\n\t\t\t\t\t{currentResult.Score}\n");
             }
-
 
             Console.WriteLine("Please Enter a string for bowling game or `q` to end program:");
             var input = Console.ReadLine();

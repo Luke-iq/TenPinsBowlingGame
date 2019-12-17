@@ -28,31 +28,27 @@ namespace TenPinsBowlingGame
         {
             var result = new ScoreResult
             {
-                ScoreType = CurrentScoreStatus() ? ScoreStatus.Final : ScoreStatus.Temporary,
+                ScoreType = IsFinalScore() ? ScoreStatus.Final : ScoreStatus.Temporary,
                 Score = PinsDroppedOfAThrow.Sum() + PinsDroppedOfABonusBall.Sum()
             };
 
             return result;
         }
-
-        private bool CurrentScoreStatus()
+        private bool IsFinalScore()
         {
             return IsStrikeAndHasAllBonus() || IsSpareAndHasBonus() || HasRemainingPinsWithoutBonus();
         }
-
         private bool IsStrikeAndHasAllBonus()
         {
-            return (PinsDroppedOfAThrow.Count == 1) && (NumberOfBonusAcquired == FrameBonus.Strike)  && (PinsDroppedOfABonusBall.Count == (int) FrameBonus.Strike);
+            return (PinsDroppedOfAThrow.Count == ValidInput.StrikeFrameLength) && (NumberOfBonusAcquired == FrameBonus.Strike)  && (PinsDroppedOfABonusBall.Count == (int) FrameBonus.Strike);
         }
-
         private bool IsSpareAndHasBonus()
         {
-            return (PinsDroppedOfAThrow.Count == 2) && (NumberOfBonusAcquired == FrameBonus.Spare) && (PinsDroppedOfABonusBall.Count == (int) FrameBonus.Spare);
+            return (PinsDroppedOfAThrow.Count == ValidInput.NoneStrikeFrameLength) && (NumberOfBonusAcquired == FrameBonus.Spare) && (PinsDroppedOfABonusBall.Count == (int) FrameBonus.Spare);
         }
-
         private bool HasRemainingPinsWithoutBonus()
         {
-            var result = (PinsDroppedOfAThrow.Count == 2) && (NumberOfBonusAcquired == FrameBonus.NoBonus) && (PinsDroppedOfABonusBall.Count == (int) FrameBonus.NoBonus);
+            var result = (PinsDroppedOfAThrow.Count == ValidInput.NoneStrikeFrameLength) && (NumberOfBonusAcquired == FrameBonus.NoBonus) && (PinsDroppedOfABonusBall.Count == (int) FrameBonus.NoBonus);
             return result;
         }
     }

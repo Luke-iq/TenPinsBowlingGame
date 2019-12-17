@@ -8,7 +8,7 @@ namespace TenPinsBowlingGame.Tests
     public class FrameFixture
     {
         [Test]
-        [Category("FrameFixture: Positive")]
+        [Category("FrameFixture:")]
         public void Should_Be_Able_To_Compute_Partial_Score_For_Spare_Frame()
         {
             var sut = new Frame
@@ -23,7 +23,7 @@ namespace TenPinsBowlingGame.Tests
         }
 
         [Test]
-        [Category("FrameFixture: Positive")]
+        [Category("FrameFixture:")]
         public void Should_Be_Able_To_Identify_Score_Is_Not_Final_For_Spare_Frame()
         {
             var sut = new Frame
@@ -38,7 +38,7 @@ namespace TenPinsBowlingGame.Tests
         }
 
         [Test]
-        [Category("FrameFixture: Positive")]
+        [Category("FrameFixture:")]
         public void Should_Be_Able_To_Compute_Final_Score_For_Spare_Frame()
         {
             var sut = new Frame {
@@ -53,7 +53,7 @@ namespace TenPinsBowlingGame.Tests
         }
 
         [Test]
-        [Category("FrameFixture: Positive")]
+        [Category("FrameFixture:")]
         public void Should_Be_Able_To_Identify_Score_Is_Final_For_Spare_Frame()
         {
             var sut = new Frame
@@ -69,7 +69,7 @@ namespace TenPinsBowlingGame.Tests
         }
 
         [Test]
-        [Category("FrameFixture: Positive")]
+        [Category("FrameFixture:")]
         public void Should_Be_Able_To_Compute_Partial_Score_For_Strike_Frame()
         {
             var sut = new Frame
@@ -85,7 +85,7 @@ namespace TenPinsBowlingGame.Tests
         }
 
         [Test]
-        [Category("FrameFixture: Positive")]
+        [Category("FrameFixture:")]
         public void Should_Be_Able_To_Identify_Score_Is_Not_Final_For_Strike_Frame()
         {
             var sut = new Frame
@@ -101,7 +101,7 @@ namespace TenPinsBowlingGame.Tests
         }
 
         [Test]
-        [Category("FrameFixture: Positive")]
+        [Category("FrameFixture:")]
         public void Should_Be_Able_To_Compute_Score_For_Strike_Frame()
         {
             var sut = new Frame
@@ -117,7 +117,7 @@ namespace TenPinsBowlingGame.Tests
         }
 
         [Test]
-        [Category("FrameFixture: Positive")]
+        [Category("FrameFixture:")]
         public void Should_Be_Able_To_Identify_Score_Is_Final_For_Strike_Frame()
         {
             var sut = new Frame
@@ -130,6 +130,28 @@ namespace TenPinsBowlingGame.Tests
             var result = sut.CurrentFrameScore();
 
             result.ScoreType.Should().BeEquivalentTo(ScoreStatus.Final);
+        }
+
+        [Test]
+        [Category("FrameFixture:")]
+        public void Should_Be_Able_To_Identify_Score_Is_Partial_For_Empty_Frame()
+        {
+            var sut = new Frame();
+
+            var result = sut.CurrentFrameScore();
+
+            result.ScoreType.Should().BeEquivalentTo(ScoreStatus.Temporary);
+        }
+
+        [Test]
+        [Category("FrameFixture:")]
+        public void Should_Be_Able_To_Compute_Partial_Score_For_Empty_Frame()
+        {
+            var sut = new Frame();
+
+            var result = sut.CurrentFrameScore();
+
+            result.Score.Should().Be(0);
         }
     }
 }

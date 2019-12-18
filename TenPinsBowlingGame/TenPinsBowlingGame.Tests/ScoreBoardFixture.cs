@@ -1,6 +1,8 @@
+using System;
 using NUnit.Framework;
 using FluentAssertions;
 
+using TenPinsBowlingGame.ExceptionHandlers;
 using TenPinsBowlingGame.Models;
 
 namespace TenPinsBowlingGame.Tests
@@ -123,6 +125,21 @@ namespace TenPinsBowlingGame.Tests
             var result = sut.GetCurrentScores();
 
             result.Score.Should().Be(167);
+        }
+
+        [Test]
+        [Category("ScoreBoardFixture: Negative")]
+        public void Should_Trow_Exception_With_Invalid_Input()
+        {
+            const string bowlingGameStats = "X|X|X|X|X|X|X|X|X|5/||88";
+
+            Action act = () =>
+            {
+                var sut = new ScoreBoard(bowlingGameStats);
+            };
+
+            act.Should().Throw<InvalidGameInputException>()
+                .WithMessage($"Invalid game input {bowlingGameStats}");
         }
     }
 }

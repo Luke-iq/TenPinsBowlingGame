@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using FluentAssertions;
-
+using TenPinsBowlingGame.Definitions;
 using TenPinsBowlingGame.ExceptionHandlers;
 using TenPinsBowlingGame.Processors;
 
@@ -343,6 +343,64 @@ namespace TenPinsBowlingGame.Tests
 
             act.Should().Throw<InvalidGameInputException>()
                 .WithMessage($"Invalid game input {bowlingGameStats}");
+        }
+
+        [Test]
+        [Category("GameParserFixture: Positive")]
+        public void Should_Generate_ScoreBoard_Without_Bonus()
+        {
+            const string bowlingGameStats = "11|11|11|11|11|11|11|11|11|11||";
+            const int maxNumberOfThrowPerFrame = 2;
+            var sut = new GameParser();
+
+            var result = sut.GenerateScoreBoard(bowlingGameStats);
+
+
+            result.Length.Should().Be(InputIndex.NumberOfFramesInBowlingGame);
+            foreach (var frame in result)
+            {
+                frame.NumberOfBonusAcquired.Should().Be(FrameBonus.NoBonus);
+                frame.PinsDroppedOfAThrow.Count.Should().Be(maxNumberOfThrowPerFrame);
+                frame.PinsDroppedOfABonusBall.Count.Should().Be((int)FrameBonus.NoBonus);
+            }
+        }
+
+        [Test]
+        [Category("GameParserFixture: Positive")]
+        public void Should_Generate_ScoreBoard_With_All_Spare_Frames()
+        {
+            const string bowlingGameStats = "1/|1/|1/|1/|1/|1/|1/|1/|1/|1/||1";
+            const int maxNumberOfThrowPerFrame = 2;
+            var sut = new GameParser();
+
+            var result = sut.GenerateScoreBoard(bowlingGameStats);
+            
+            result.Length.Should().Be(InputIndex.NumberOfFramesInBowlingGame);
+            foreach (var frame in result)
+            {
+                frame.NumberOfBonusAcquired.Should().Be(FrameBonus.Spare);
+                frame.PinsDroppedOfAThrow.Count.Should().Be(maxNumberOfThrowPerFrame);
+                frame.PinsDroppedOfABonusBall.Count.Should().Be((int)FrameBonus.Spare);
+            }
+        }
+
+        [Test]
+        [Category("GameParserFixture: Positive")]
+        public void Should_Generate_ScoreBoard_With_All_Strike_Frames()
+        {
+            const string bowlingGameStats = "x|x|X|X|x|x|x|x|x|x||xx";
+            const int minNumberOfThrowPerFrame = 1;
+            var sut = new GameParser();
+
+            var result = sut.GenerateScoreBoard(bowlingGameStats);
+
+            result.Length.Should().Be(InputIndex.NumberOfFramesInBowlingGame);
+            foreach (var frame in result)
+            {
+                frame.NumberOfBonusAcquired.Should().Be(FrameBonus.Strike);
+                frame.PinsDroppedOfAThrow.Count.Should().Be(minNumberOfThrowPerFrame);
+                frame.PinsDroppedOfABonusBall.Count.Should().Be((int)FrameBonus.Strike);
+            }
         }
     }
 }

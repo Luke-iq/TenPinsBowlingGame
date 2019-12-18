@@ -104,7 +104,7 @@ namespace TenPinsBowlingGame.Tests
 
         [Test]
         [Category("FrameFixture:")]
-        public void Should_Be_Able_To_Compute_Score_For_Strike_Frame()
+        public void Should_Be_Able_To_Compute_Final_Score_For_Strike_Frame()
         {
             var sut = new Frame
             {

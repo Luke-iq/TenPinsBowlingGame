@@ -1,11 +1,14 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 using FluentAssertions;
+
 using TenPinsBowlingGame.Definitions;
-using System.Collections.Generic;
+using TenPinsBowlingGame.Models;
+using TenPinsBowlingGame.Processors;
 
 namespace TenPinsBowlingGame.Tests
 {
-    class BonusHandlerFixture
+    public class BonusHandlerFixture
     {
         [Test]
         [Category("BonusHandlerFixture: Positive")]

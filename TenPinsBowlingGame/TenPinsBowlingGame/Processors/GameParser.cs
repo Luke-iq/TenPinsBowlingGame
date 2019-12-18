@@ -1,8 +1,9 @@
 ﻿using TenPinsBowlingGame.Definitions;
 using TenPinsBowlingGame.ExceptionHandlers;
+using TenPinsBowlingGame.Models;
 using TenPinsBowlingGame.Validators;
 
-namespace TenPinsBowlingGame
+namespace TenPinsBowlingGame.Processors
 {
     public class GameParser : ScoreBoardValidator
     {

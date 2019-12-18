@@ -1,14 +1,28 @@
 ﻿using System;
+
 using TenPinsBowlingGame.ExceptionHandlers;
+using TenPinsBowlingGame.Models;
 
 namespace TenPinsBowlingGame
 {
     public class Program
     {
+        public static void PrintScore(string s)
+        {
+            try
+            {
+                var bowlingGameScoreBoard = new ScoreBoard(s);
+                var currentResult = bowlingGameScoreBoard.GetCurrentScores();
+
+                Console.WriteLine($"\t\t\t\t{currentResult.ScoreType} Score: {currentResult.Score}\n");
+            }
+            catch (InvalidGameInputException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
         public static void Main(string[] args)
         {
-            ScoreBoard bowlingGameScoreBoard;
-
             var bowlingGameStats = new []
             {
                 "11|22|33|44|11|22|33|44|11|22||",
@@ -21,37 +35,22 @@ namespace TenPinsBowlingGame
                 "9-|9-|9-|9-|9-|9-|9-|9-|9-|9-||",
                 "X|7/|9-|X|-8|8/|-6|X|X|X||81"
             };
+            string input;
 
             Console.WriteLine("Bowling Score Board");
 
             foreach (var gameInput in bowlingGameStats)
             {
-                bowlingGameScoreBoard = new ScoreBoard(gameInput);
-                
-                var currentResult = bowlingGameScoreBoard.GetCurrentScores();
-
-                Console.WriteLine($"{gameInput}\n\t\t\t\t\t{currentResult.Score}\n");
+                Console.WriteLine($"{gameInput}");
+                PrintScore(gameInput);
             }
 
-            Console.WriteLine("Please Enter a string for bowling game or `q` to end program:");
-            var input = Console.ReadLine();
-            while (input != "q")
+            do
             {
-                try
-                {
-                    bowlingGameScoreBoard = new ScoreBoard(input);
-                    var currentResult = bowlingGameScoreBoard.GetCurrentScores();
-
-                    Console.WriteLine($"\t\t\t\t{currentResult.ScoreType} Score: {currentResult.Score}\n");
-                }
-                catch (InvalidGameInputException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
                 Console.WriteLine("Please Enter a string for bowling game or 'q' to end program:");
                 input = Console.ReadLine();
-            }
+                PrintScore(input);
+            } while (input != "q");
         }
     }
 }

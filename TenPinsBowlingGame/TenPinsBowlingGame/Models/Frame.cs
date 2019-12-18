@@ -3,7 +3,7 @@ using System.Linq;
 
 using TenPinsBowlingGame.Definitions;
 
-namespace TenPinsBowlingGame
+namespace TenPinsBowlingGame.Models
 {
     public class Frame
     {

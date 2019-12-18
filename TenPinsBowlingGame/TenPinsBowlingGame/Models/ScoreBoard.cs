@@ -1,6 +1,7 @@
 ﻿using TenPinsBowlingGame.Definitions;
+using TenPinsBowlingGame.Processors;
 
-namespace TenPinsBowlingGame
+namespace TenPinsBowlingGame.Models
 {
     public class ScoreBoard
     {

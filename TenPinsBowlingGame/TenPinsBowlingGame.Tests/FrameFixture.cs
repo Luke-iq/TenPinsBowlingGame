@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
 using FluentAssertions;
+
 using TenPinsBowlingGame.Definitions;
+using TenPinsBowlingGame.Models;
 
 namespace TenPinsBowlingGame.Tests
 {

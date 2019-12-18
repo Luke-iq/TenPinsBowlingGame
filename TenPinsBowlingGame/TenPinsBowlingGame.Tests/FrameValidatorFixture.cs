@@ -2,6 +2,7 @@
 using FluentAssertions;
 
 using TenPinsBowlingGame.Validators;
+
 namespace TenPinsBowlingGame.Tests
 {
     public class FrameValidatorFixture

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace TenPinsBowlingGame
+using TenPinsBowlingGame.Models;
+
+namespace TenPinsBowlingGame.Processors
 {
     public class BonusHandler
     {

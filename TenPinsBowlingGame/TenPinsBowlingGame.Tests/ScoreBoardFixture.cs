@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using FluentAssertions;
 
+using TenPinsBowlingGame.Models;
+
 namespace TenPinsBowlingGame.Tests
 {
     public class ScoreBoardFixture

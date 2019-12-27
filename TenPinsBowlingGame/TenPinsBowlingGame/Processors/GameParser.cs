@@ -9,9 +9,9 @@ namespace TenPinsBowlingGame.Processors
     {
         public Frame[] GenerateScoreBoard(string gameInfo)
         {
-            var gameInfoArray = gameInfo.Split(ValidInput.FrameSeparator);
+            var rawFrames = gameInfo.Split(ValidInput.FrameSeparator);
 
-            if (!IsValidGame(gameInfoArray))
+            if (!IsValidGame(rawFrames))
             {
                 throw new InvalidGameInputException($"Invalid game input {gameInfo}");
             }
@@ -22,7 +22,7 @@ namespace TenPinsBowlingGame.Processors
 
             for (var frameIndex = 0; frameIndex < InputIndex.NumberOfFramesInBowlingGame; frameIndex++)
             {
-                var newFrame = StringToFrame(gameInfoArray[frameIndex]);
+                var newFrame = StringToFrame(rawFrames[frameIndex]);
 
                 bonusTracker.ApplyBonuses(newFrame.PinsDroppedOfAThrow);
 
@@ -34,9 +34,9 @@ namespace TenPinsBowlingGame.Processors
                 frames[frameIndex] = newFrame;
             }
 
-            if (gameInfoArray[InputIndex.BonusFrame].Length != ValidInput.EmptyFrameLength)
+            if (rawFrames[InputIndex.BonusFrame].Length != ValidInput.EmptyFrameLength)
             {
-                var bonusFrame = StringToFrame(gameInfoArray[InputIndex.BonusFrame]);
+                var bonusFrame = StringToFrame(rawFrames[InputIndex.BonusFrame]);
                 bonusTracker.ApplyBonuses(bonusFrame.PinsDroppedOfAThrow);
             }
             

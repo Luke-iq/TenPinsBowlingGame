@@ -1,16 +1,19 @@
-﻿using TenPinsBowlingGame.Definitions;
+﻿using System.Collections.Generic;
+using TenPinsBowlingGame.Definitions;
 using TenPinsBowlingGame.Processors;
 
 namespace TenPinsBowlingGame.Models
 {
     public class ScoreBoard
     {
-        public Frame[] Frames;
+        private readonly Frame[] _frames;
+
+        public IEnumerable<Frame> Frames => _frames;
 
         public ScoreBoard(string gameInfo)
         {
             var gameParser = new GameParser();
-            Frames = gameParser.GenerateScoreBoard(gameInfo);
+            _frames = gameParser.GenerateScoreBoard(gameInfo);
         }
 
         public ScoreResult GetCurrentScores()

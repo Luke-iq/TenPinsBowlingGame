@@ -7,22 +7,24 @@ namespace TenPinsBowlingGame.Models
 {
     public class Frame
     {
-        public List<int> PinsDroppedOfAThrow { get; set; }
-        public List<int> PinsDroppedOfABonusBall { get; set; }
+        private readonly List<int> _pinsDroppedOfAThrow;
+        private readonly List<int> _pinsDroppedOfABonusBall;
+        public IEnumerable<int> PinsDroppedOfAThrow => _pinsDroppedOfAThrow;
+        public IEnumerable<int> PinsDroppedOfABonusBall => _pinsDroppedOfABonusBall;
         public FrameBonus NumberOfBonusAcquired { get; set; }
         public Frame()
         {
-            PinsDroppedOfAThrow = new List<int>();
-            PinsDroppedOfABonusBall = new List<int>();
+            _pinsDroppedOfAThrow = new List<int>();
+            _pinsDroppedOfABonusBall = new List<int>();
             NumberOfBonusAcquired = 0;
         }
         public void AddThrow(int pinsDropped)
         {
-            PinsDroppedOfAThrow.Add(pinsDropped);
+            _pinsDroppedOfAThrow.Add(pinsDropped);
         }
         public void AddBonus(int pinsDropped)
         {
-            PinsDroppedOfABonusBall.Add(pinsDropped);
+            _pinsDroppedOfABonusBall.Add(pinsDropped);
         }
         public ScoreResult CurrentFrameScore()
         {
@@ -40,15 +42,15 @@ namespace TenPinsBowlingGame.Models
         }
         private bool IsStrikeAndHasAllBonus()
         {
-            return (PinsDroppedOfAThrow.Count == ValidInput.StrikeFrameLength) && (NumberOfBonusAcquired == FrameBonus.Strike)  && (PinsDroppedOfABonusBall.Count == (int) FrameBonus.Strike);
+            return (PinsDroppedOfAThrow.Count() == ValidInput.StrikeFrameLength) && (NumberOfBonusAcquired == FrameBonus.Strike)  && (PinsDroppedOfABonusBall.Count() == (int) FrameBonus.Strike);
         }
         private bool IsSpareAndHasBonus()
         {
-            return (PinsDroppedOfAThrow.Count == ValidInput.NoneStrikeFrameLength) && (NumberOfBonusAcquired == FrameBonus.Spare) && (PinsDroppedOfABonusBall.Count == (int) FrameBonus.Spare);
+            return (PinsDroppedOfAThrow.Count() == ValidInput.NoneStrikeFrameLength) && (NumberOfBonusAcquired == FrameBonus.Spare) && (PinsDroppedOfABonusBall.Count() == (int) FrameBonus.Spare);
         }
         private bool HasRemainingPinsWithoutBonus()
         {
-            var result = (PinsDroppedOfAThrow.Count == ValidInput.NoneStrikeFrameLength) && (NumberOfBonusAcquired == FrameBonus.NoBonus) && (PinsDroppedOfABonusBall.Count == (int) FrameBonus.NoBonus);
+            var result = (PinsDroppedOfAThrow.Count() == ValidInput.NoneStrikeFrameLength) && (NumberOfBonusAcquired == FrameBonus.NoBonus) && (PinsDroppedOfABonusBall.Count() == (int) FrameBonus.NoBonus);
             return result;
         }
     }

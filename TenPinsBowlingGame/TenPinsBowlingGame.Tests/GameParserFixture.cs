@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using FluentAssertions;
 using TenPinsBowlingGame.Definitions;
@@ -360,8 +361,8 @@ namespace TenPinsBowlingGame.Tests
             foreach (var frame in result)
             {
                 frame.NumberOfBonusAcquired.Should().Be(FrameBonus.NoBonus);
-                frame.PinsDroppedOfAThrow.Count.Should().Be(maxNumberOfThrowPerFrame);
-                frame.PinsDroppedOfABonusBall.Count.Should().Be((int)FrameBonus.NoBonus);
+                frame.PinsDroppedOfAThrow.Count().Should().Be(maxNumberOfThrowPerFrame);
+                frame.PinsDroppedOfABonusBall.Count().Should().Be((int)FrameBonus.NoBonus);
             }
         }
 
@@ -379,8 +380,8 @@ namespace TenPinsBowlingGame.Tests
             foreach (var frame in result)
             {
                 frame.NumberOfBonusAcquired.Should().Be(FrameBonus.Spare);
-                frame.PinsDroppedOfAThrow.Count.Should().Be(maxNumberOfThrowPerFrame);
-                frame.PinsDroppedOfABonusBall.Count.Should().Be((int)FrameBonus.Spare);
+                frame.PinsDroppedOfAThrow.Count().Should().Be(maxNumberOfThrowPerFrame);
+                frame.PinsDroppedOfABonusBall.Count().Should().Be((int)FrameBonus.Spare);
             }
         }
 
@@ -398,8 +399,8 @@ namespace TenPinsBowlingGame.Tests
             foreach (var frame in result)
             {
                 frame.NumberOfBonusAcquired.Should().Be(FrameBonus.Strike);
-                frame.PinsDroppedOfAThrow.Count.Should().Be(minNumberOfThrowPerFrame);
-                frame.PinsDroppedOfABonusBall.Count.Should().Be((int)FrameBonus.Strike);
+                frame.PinsDroppedOfAThrow.Count().Should().Be(minNumberOfThrowPerFrame);
+                frame.PinsDroppedOfABonusBall.Count().Should().Be((int)FrameBonus.Strike);
             }
         }
     }

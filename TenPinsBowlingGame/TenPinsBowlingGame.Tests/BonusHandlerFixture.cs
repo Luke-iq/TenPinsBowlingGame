@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using FluentAssertions;
 
@@ -21,7 +22,7 @@ namespace TenPinsBowlingGame.Tests
 
             sut.ApplyBonuses(bonusValue);
 
-            aFrame.PinsDroppedOfABonusBall.Count.Should().Be((int)FrameBonus.Spare);
+            aFrame.PinsDroppedOfABonusBall.Count().Should().Be((int)FrameBonus.Spare);
         }
 
         [Test]
@@ -35,7 +36,7 @@ namespace TenPinsBowlingGame.Tests
 
             sut.ApplyBonuses(bonusValue);
 
-            aFrame.PinsDroppedOfABonusBall.Count.Should().Be((int)FrameBonus.Strike);
+            aFrame.PinsDroppedOfABonusBall.Count().Should().Be((int)FrameBonus.Strike);
         }
 
         [Test]

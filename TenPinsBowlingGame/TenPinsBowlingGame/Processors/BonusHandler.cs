@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using System.Linq;
 using TenPinsBowlingGame.Models;
 
 namespace TenPinsBowlingGame.Processors
@@ -13,7 +13,7 @@ namespace TenPinsBowlingGame.Processors
             _bonusTracker.Enqueue(frame);
         }
 
-        public bool ApplyBonuses(List<int> bonusRecords)
+        public bool ApplyBonuses(IEnumerable<int> bonusRecords)
         {
             var status = true;
             foreach (var bonus in bonusRecords)
@@ -36,7 +36,7 @@ namespace TenPinsBowlingGame.Processors
             {
                 var currentFrame = _bonusTracker.Dequeue();
                 currentFrame.AddBonus(pinsDropped);
-                if ((int)currentFrame.NumberOfBonusAcquired != currentFrame.PinsDroppedOfABonusBall.Count)
+                if ((int)currentFrame.NumberOfBonusAcquired != currentFrame.PinsDroppedOfABonusBall.Count())
                 {
                     _bonusTracker.Enqueue(currentFrame);
                 }

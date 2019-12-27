@@ -16,8 +16,9 @@ namespace TenPinsBowlingGame.Tests
             var sut = new Frame
             {
                 NumberOfBonusAcquired = FrameBonus.Spare,
-                PinsDroppedOfAThrow = new List<int>{5, 5}
             };
+            sut.AddThrow(5);
+            sut.AddThrow(5);
 
             var result = sut.CurrentFrameScore();
 
@@ -28,11 +29,9 @@ namespace TenPinsBowlingGame.Tests
         [Category("FrameFixture:")]
         public void Should_Be_Able_To_Identify_Score_Is_Not_Final_For_Spare_Frame()
         {
-            var sut = new Frame
-            {
-                NumberOfBonusAcquired = FrameBonus.Spare,
-                PinsDroppedOfAThrow = new List<int> { 5, 5 }
-            };
+            var sut = new Frame {NumberOfBonusAcquired = FrameBonus.Spare};
+            sut.AddThrow(5);
+            sut.AddThrow(5);
 
             var result = sut.CurrentFrameScore();
 
@@ -43,11 +42,10 @@ namespace TenPinsBowlingGame.Tests
         [Category("FrameFixture:")]
         public void Should_Be_Able_To_Compute_Final_Score_For_Spare_Frame()
         {
-            var sut = new Frame {
-                NumberOfBonusAcquired = FrameBonus.Spare,
-                PinsDroppedOfAThrow = new List<int> { 5, 5 },
-                PinsDroppedOfABonusBall = new List<int> { 3 }
-            };
+            var sut = new Frame {NumberOfBonusAcquired = FrameBonus.Spare};
+            sut.AddThrow(5);
+            sut.AddThrow(5);
+            sut.AddBonus(3);
 
             var result = sut.CurrentFrameScore();
 
@@ -58,12 +56,10 @@ namespace TenPinsBowlingGame.Tests
         [Category("FrameFixture:")]
         public void Should_Be_Able_To_Identify_Score_Is_Final_For_Spare_Frame()
         {
-            var sut = new Frame
-            {
-                NumberOfBonusAcquired = FrameBonus.Spare,
-                PinsDroppedOfAThrow = new List<int> { 5, 5 },
-                PinsDroppedOfABonusBall = new List<int> { 3 }
-            };
+            var sut = new Frame { NumberOfBonusAcquired = FrameBonus.Spare };
+            sut.AddThrow(5);
+            sut.AddThrow(5);
+            sut.AddBonus(3);
 
             var result = sut.CurrentFrameScore();
 
@@ -74,12 +70,9 @@ namespace TenPinsBowlingGame.Tests
         [Category("FrameFixture:")]
         public void Should_Be_Able_To_Compute_Partial_Score_For_Strike_Frame()
         {
-            var sut = new Frame
-            {
-                NumberOfBonusAcquired = FrameBonus.Strike,
-                PinsDroppedOfAThrow = new List<int> { 10 },
-                PinsDroppedOfABonusBall = new List<int> { 10 }
-            };
+            var sut = new Frame { NumberOfBonusAcquired = FrameBonus.Strike };
+            sut.AddThrow(10);
+            sut.AddBonus(10);
 
             var result = sut.CurrentFrameScore();
 
@@ -90,12 +83,9 @@ namespace TenPinsBowlingGame.Tests
         [Category("FrameFixture:")]
         public void Should_Be_Able_To_Identify_Score_Is_Not_Final_For_Strike_Frame()
         {
-            var sut = new Frame
-            {
-                NumberOfBonusAcquired = FrameBonus.Strike,
-                PinsDroppedOfAThrow = new List<int> { 10 },
-                PinsDroppedOfABonusBall = new List<int> { 10 }
-            };
+            var sut = new Frame { NumberOfBonusAcquired = FrameBonus.Strike };
+            sut.AddThrow(10);
+            sut.AddBonus(10);
 
             var result = sut.CurrentFrameScore();
 
@@ -106,12 +96,10 @@ namespace TenPinsBowlingGame.Tests
         [Category("FrameFixture:")]
         public void Should_Be_Able_To_Compute_Final_Score_For_Strike_Frame()
         {
-            var sut = new Frame
-            {
-                NumberOfBonusAcquired = FrameBonus.Strike,
-                PinsDroppedOfAThrow = new List<int> { 10 },
-                PinsDroppedOfABonusBall = new List<int> { 3, 5 }
-            };
+            var sut = new Frame { NumberOfBonusAcquired = FrameBonus.Strike };
+            sut.AddThrow(10);
+            sut.AddBonus(3);
+            sut.AddBonus(5);
 
             var result = sut.CurrentFrameScore();
 
@@ -122,12 +110,10 @@ namespace TenPinsBowlingGame.Tests
         [Category("FrameFixture:")]
         public void Should_Be_Able_To_Identify_Score_Is_Final_For_Strike_Frame()
         {
-            var sut = new Frame
-            {
-                NumberOfBonusAcquired = FrameBonus.Strike,
-                PinsDroppedOfAThrow = new List<int> { 10 },
-                PinsDroppedOfABonusBall = new List<int> { 3, 5 }
-            };
+            var sut = new Frame { NumberOfBonusAcquired = FrameBonus.Strike };
+            sut.AddThrow(10);
+            sut.AddBonus(3);
+            sut.AddBonus(5);
 
             var result = sut.CurrentFrameScore();
 

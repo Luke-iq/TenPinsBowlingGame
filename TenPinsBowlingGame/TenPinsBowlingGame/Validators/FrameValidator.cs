@@ -42,7 +42,7 @@ namespace TenPinsBowlingGame.Validators
             }
         }
 
-        public static bool IsStrikeFrame(string frame)
+        public bool IsStrikeFrame(string frame)
         {
             return ((frame.Length == ValidInput.StrikeFrameLength) && (frame.ToLower() == ValidInput.StrikeFrame));
         }

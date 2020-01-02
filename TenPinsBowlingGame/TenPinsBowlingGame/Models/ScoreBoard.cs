@@ -10,9 +10,8 @@ namespace TenPinsBowlingGame.Models
 
         public IEnumerable<Frame> Frames => _frames;
 
-        public ScoreBoard(string gameInfo)
+        public ScoreBoard(string gameInfo, GameParser gameParser)
         {
-            var gameParser = new GameParser();
             _frames = gameParser.GenerateScoreBoard(gameInfo);
         }
 

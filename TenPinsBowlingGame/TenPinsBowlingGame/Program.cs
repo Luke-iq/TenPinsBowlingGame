@@ -2,6 +2,8 @@
 
 using TenPinsBowlingGame.ExceptionHandlers;
 using TenPinsBowlingGame.Models;
+using TenPinsBowlingGame.Processors;
+using TenPinsBowlingGame.Validators;
 
 namespace TenPinsBowlingGame
 {
@@ -11,7 +13,8 @@ namespace TenPinsBowlingGame
         {
             try
             {
-                var bowlingGameScoreBoard = new ScoreBoard(s);
+                var gameParser = new GameParser(new ScoreBoardValidator());
+                var bowlingGameScoreBoard = new ScoreBoard(s, gameParser);
                 var currentResult = bowlingGameScoreBoard.GetCurrentScores();
 
                 Console.WriteLine($"\t\t\t\t{currentResult.ScoreType} Score: {currentResult.Score}\n");

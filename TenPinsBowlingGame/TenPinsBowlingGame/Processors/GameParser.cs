@@ -5,13 +5,15 @@ using TenPinsBowlingGame.Validators;
 
 namespace TenPinsBowlingGame.Processors
 {
-    public class GameParser : ScoreBoardValidator
+    public class GameParser
     {
+        private static ScoreBoardValidator _scoreBoardValidator;
+        public GameParser(ScoreBoardValidator scoreBoardValidator) => _scoreBoardValidator = scoreBoardValidator;
         public Frame[] GenerateScoreBoard(string gameInfo)
         {
             var rawFrames = gameInfo.Split(ValidInput.FrameSeparator);
 
-            if (!IsValidGame(rawFrames))
+            if (!_scoreBoardValidator.IsValidGame(rawFrames))
             {
                 throw new InvalidGameInputException($"Invalid game input {gameInfo}");
             }
@@ -47,7 +49,7 @@ namespace TenPinsBowlingGame.Processors
         {
             var frame = new Frame();
 
-            if (IsStrikeFrame(frameString))
+            if (_scoreBoardValidator.IsStrikeFrame(frameString))
             {
                 frame.AddThrow(InputIndex.TotalNumberOfPins);
                 frame.NumberOfBonusAcquired = FrameBonus.Strike;

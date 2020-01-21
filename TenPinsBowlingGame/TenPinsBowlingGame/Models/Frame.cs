@@ -2,6 +2,7 @@
 using System.Linq;
 
 using TenPinsBowlingGame.Definitions;
+using TenPinsBowlingGame.ExceptionHandlers;
 
 namespace TenPinsBowlingGame.Models
 {
@@ -20,11 +21,23 @@ namespace TenPinsBowlingGame.Models
         }
         public void AddThrow(int pinsDropped)
         {
-            _pinsDroppedOfAThrow.Add(pinsDropped);
+            if(_pinsDroppedOfAThrow.Count < ValidInput.NoneStrikeFrameLength)
+            {
+                _pinsDroppedOfAThrow.Add(pinsDropped);
+                if(_pinsDroppedOfAThrow.Count == ValidInput.StrikeFrameLength && pinsDropped == InputIndex.TotalNumberOfPins)
+                {
+                    
+                }
+            }
+            throw new InvalidGameInputException($"Invalid frame input {pinsDropped} for a completed Frame");  
         }
         public void AddBonus(int pinsDropped)
         {
-            _pinsDroppedOfABonusBall.Add(pinsDropped);
+            if(_pinsDroppedOfABonusBall.Count < (int) NumberOfBonusAcquired)
+            {
+                _pinsDroppedOfABonusBall.Add(pinsDropped);
+            }
+            throw new InvalidGameInputException($"Invalid bouns input {pinsDropped} for a completed Frame");  
         }
         public ScoreResult CurrentFrameScore()
         {
@@ -36,6 +49,9 @@ namespace TenPinsBowlingGame.Models
 
             return result;
         }
+
+        public bool HasAllKnockedDownPinsInfo() => _pinsDroppedOfAThrow.Count == ValidInput.NoneStrikeFrameLength || _pinsDroppedOfAThrow[0] == InputIndex.TotalNumberOfPins;
+
         private bool IsFinalScore()
         {
             return IsStrikeAndHasAllBonus() || IsSpareAndHasBonus() || HasRemainingPinsWithoutBonus();

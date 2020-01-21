@@ -6,7 +6,9 @@ namespace TenPinsBowlingGame.Processors
 {
     public class BonusHandler
     {
-        private readonly Queue<Frame> _bonusTracker = new Queue<Frame>();
+        private static readonly Queue<Frame> _bonusTracker = new Queue<Frame>();
+
+        public bool BonusInfoRequired = _bonusTracker.Count > 0;
 
         public void AddFrame(Frame frame)
         {
@@ -23,7 +25,7 @@ namespace TenPinsBowlingGame.Processors
             return status;
         }
 
-        private bool ApplyBonus(int pinsDropped)
+        public bool ApplyBonus(int pinsDropped)
         {
             if (_bonusTracker.Count == 0)
             {
